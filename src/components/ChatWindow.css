@@ -1,0 +1,88 @@
+.chatWindow{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.chatWindow--header{
+    display: flex;
+    height: 60px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.chatWindow--headerInfo{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.chatWindow--avatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.chatWindow--nome {
+    font-size: 17px;
+    color: #000;
+}
+
+.chatWindow--headerButtons{
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.chatWindow--btn{
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chatWindow--body{
+    flex: 1;
+    overflow-y: auto;
+    background-color: #e5ddd5;
+    background-size: cover;
+    background-position: center;
+    background-image: url('https://cdn.wallpapersafari.com/54/0/HluF7g.jpg');
+}
+
+.chatWindow--footer{
+    height: 62px;
+    display: flex;
+    align-items: center;
+
+}
+
+.chatWindow--pre,
+.chatWindow--pos{
+    display: flex;
+    margin: 0 15px;
+
+}
+
+.chatWindow--inputArea{
+    flex: 1
+}
+
+.chatWindow--input{
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    padding: 0 15px;
+    font-size: 16px;
+    color: #000;
+    background-color: #fff;
+    outline: none;
+}
+
