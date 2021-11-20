@@ -19,6 +19,14 @@ export default function ChatWindow() {
     const handleEmojiClick = (e, emojiObject) => {
         setText(text + emojiObject.emoji)
     }
+
+    const handleMicClick = () => {
+
+    }
+
+    const handleSendClick = () => {
+      
+    }
    
 
     return (
@@ -81,9 +89,17 @@ export default function ChatWindow() {
 
           <div className="chatWindow--pós">
             <div className="chatWindow--btn">
-                <SendIcon style={{ color: "#919191" }} />
-
-                <MicIcon style={{ color: "#919191" }} />
+            {text === '' && 
+               <MicIcon style={{ color: "#919191" }}
+                onClick={handleMicClick}
+               
+               />
+            }
+            {text !== '' &&
+              <SendIcon style={{ color: "#919191" }} 
+                 onClick={handleSendClick}
+              />
+            }
               </div>
           </div>
         </div>
