@@ -12,7 +12,16 @@ import MicIcon from '@mui/icons-material/Mic';
 
 export default function ChatWindow() {
 
+    let recognation = null;
+
+    let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if(SpeechRecognition !== undefined) {
+      recognation = new SpeechRecognition();
+    }
+
     const [text, setText] = useState('')
+
+    const [listening, setListening] = useState(false)
 
     const [emojiOpen, setEmojiOpen] = useState(false)
 
@@ -21,11 +30,25 @@ export default function ChatWindow() {
     }
 
     const handleMicClick = () => {
+      if(recognation !== null) {
+       recognation.onstart = () => {
+        setListening(true);
+       }
+        recognation.onend = () => {
+          setListening(false);
+        }
 
+        recognation.onresult = (event) => {
+          const text = event.results[0][0].transcript;
+          setText(text);
+        }
+
+        recognation.start();
+      }
     }
 
     const handleSendClick = () => {
-      
+
     }
    
 
@@ -90,7 +113,7 @@ export default function ChatWindow() {
           <div className="chatWindow--pós">
             <div className="chatWindow--btn">
             {text === '' && 
-               <MicIcon style={{ color: "#919191" }}
+               <MicIcon style={{ color: listening ? "#126ece":"#919191" }}
                 onClick={handleMicClick}
                
                />
