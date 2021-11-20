@@ -1,4 +1,6 @@
-import React from 'react'
+/* eslint-disable react/jsx-no-duplicate-props */
+import React, {useState} from 'react'
+import EmojiPicker from 'emoji-picker-react'
 import './ChatWindow.css'
 import SearchIcon from '@mui/icons-material/Search';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -9,6 +11,16 @@ import SendIcon from '@mui/icons-material/Send';
 import MicIcon from '@mui/icons-material/Mic';
 
 export default function ChatWindow() {
+
+    const [text, setText] = useState('')
+
+    const [emojiOpen, setEmojiOpen] = useState(false)
+
+    const handleEmojiClick = (e, emojiObject) => {
+        setText(text + emojiObject.emoji)
+    }
+   
+
     return (
       <div className="chatWindow">
         <div className="chatWindow--header">
@@ -33,22 +45,45 @@ export default function ChatWindow() {
           </div>
         </div>
         <div className="chatWindow--body"></div>
+
+        <div className="chatWindow--emojiArea" style={{height: emojiOpen ? '200px' : '0'}}>
+          <EmojiPicker 
+            onEmojiClick={handleEmojiClick}
+            disableSearchBar
+            disableSkinTonePicker
+          />
+        </div>
+
         <div className="chatWindow--footer">
           <div className="chatWindow--pre">
             <div className="chatWindow--pre--btn">
               <div className="chatWindow--btn">
-                <InsertEmoticonIcon style={{ color: "#919191" }} />
+                <CloseIcon style={{ color: "#919191" }}
+                  onClick={() => setEmojiOpen(false)}
+                  style={{width: emojiOpen ? '30px' : '0'}}
+                />
+                <InsertEmoticonIcon style={{ color: "#919191" }} 
+                 style = {{width: emojiOpen ? '0' : '40px'}}
+                 onClick={() => setEmojiOpen(!emojiOpen)}/>
               </div>
             </div>
           </div>
 
           <div className="chatWindow--inputArea">
-              <input className="chatWindow--input" type="text" placeholder="Digite uma mensagem" />
+              <input className="chatWindow--input" 
+                     type="text" 
+                     placeholder="Digite uma mensagem" 
+                     value={text}
+                     onChange={(e) => setText(e.target.value)}
+
+              />
           </div>
 
           <div className="chatWindow--pós">
             <div className="chatWindow--btn">
                 <SendIcon style={{ color: "#919191" }} />
+
+                <MicIcon style={{ color: "#919191" }} />
               </div>
           </div>
         </div>

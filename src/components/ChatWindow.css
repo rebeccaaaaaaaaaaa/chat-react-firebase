@@ -74,6 +74,12 @@
     flex: 1
 }
 
+.chatWindow--emojiArea{
+    height: 200px;
+    overflow-y: hidden;
+    transition: all 0.4s ease;
+}
+
 .chatWindow--input{
     width: 100%;
     height: 40px;
@@ -86,3 +92,7 @@
     outline: none;
 }
 
+
+aside.emoji-picker-react{
+    width: auto;
+}
