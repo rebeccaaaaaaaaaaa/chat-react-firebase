@@ -10,6 +10,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import SendIcon from '@mui/icons-material/Send';
 import MicIcon from '@mui/icons-material/Mic';
 
+import MessageItem from './MessageItem'
+
 export default function ChatWindow() {
 
     let recognation = null;
@@ -24,6 +26,8 @@ export default function ChatWindow() {
     const [listening, setListening] = useState(false)
 
     const [emojiOpen, setEmojiOpen] = useState(false)
+
+    const [list, setList] = useState([{},{},{}]);
 
     const handleEmojiClick = (e, emojiObject) => {
         setText(text + emojiObject.emoji)
@@ -75,7 +79,19 @@ export default function ChatWindow() {
             </div>
           </div>
         </div>
-        <div className="chatWindow--body"></div>
+        <div className="chatWindow--body">
+
+        {list.map((item, key) => {
+          return (
+             <MessageItem
+              key={key}
+              data={item}
+
+             />
+          )
+        })}
+
+        </div>
 
         <div className="chatWindow--emojiArea" style={{height: emojiOpen ? '200px' : '0'}}>
           <EmojiPicker 
